@@ -1,6 +1,5 @@
 from pyoptimum import Client
-from functions.portfolio_io import get_data_for_ticker
-from functions.portfolio_object import PortfolioObject
+from functions.portfolio_object import PortfolioDataObject
 
 print('PyOptimum Porfolio Example for Website')
 print('> Pulling data from Yahoo Finance')
@@ -9,19 +8,15 @@ print('> Pulling data from Yahoo Finance')
 
 ticker_list = ['SPY','MINT']
 
-prt = PortfolioObject(ticker_list)
+prt = PortfolioDataObject(ticker_list)
 
-
-
-
-# here is a test comment from cody
-
-# covariance
+# covariance calculated from historical data
 Q = prt.covariance_matrix.values.tolist()
 
-# returns
+# returns calculated from historical data
 r = prt.calc_return.tolist()
 
+# beginning of Mauricio's original example
 # initial holdings
 x0 = [.1, .7]
 
@@ -29,7 +24,7 @@ x0 = [.1, .7]
 cashflow = 1
 
 # expected return
-mu = .11
+mu = .08
 
 # bundle data
 data = {
